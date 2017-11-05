@@ -1,3 +1,4 @@
+package Professions;
 /*
  * BasePlayer class
  * @author Omar Mohammed

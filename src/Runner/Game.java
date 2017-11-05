@@ -1,3 +1,4 @@
+package Runner;
 /* @Author Omar Mohammed
  * This class contains the main
  */
@@ -5,6 +6,13 @@
 
 
 import javax.swing.JOptionPane;
+
+import Professions.BasePlayer;
+import Professions.Mage;
+import Professions.Marksman;
+import Professions.Swordsman;
+import Professions.Tank;
+
 import java.util.Random;
 
 public class Game {

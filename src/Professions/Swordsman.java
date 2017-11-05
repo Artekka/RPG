@@ -1,3 +1,5 @@
+package Professions;
+
 /*
  * This is one of our current available classes in the Rpg
  * We hard code the specific data meant for the class (Swordsman) in. We only allow the user to change the name and the name of the weapon. Our

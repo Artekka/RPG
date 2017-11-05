@@ -1,3 +1,4 @@
+package Professions;
 
 public class Tank extends BasePlayer{
 	

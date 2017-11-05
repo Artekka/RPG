@@ -1,4 +1,7 @@
 
+
+package Professions;
+
 public class Mage extends BasePlayer {
 	
 	private String weaponName;

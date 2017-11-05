@@ -1,4 +1,10 @@
+package TestCodes;
 import javax.swing.*;
+
+import Professions.BasePlayer;
+import Professions.Mage;
+import Professions.Tank;
+
 import java.awt.*;
 import java.awt.event.*;
 

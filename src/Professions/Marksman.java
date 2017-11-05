@@ -1,3 +1,4 @@
+package Professions;
 
 public class Marksman extends BasePlayer{
 	

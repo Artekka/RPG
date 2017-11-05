@@ -1,3 +1,10 @@
+package TestCodes;
+import Professions.BasePlayer;
+import Professions.Mage;
+import Professions.Marksman;
+import Professions.Swordsman;
+import Professions.Tank;
+
 /*
  * This file is used to test the making of each classes and their functions!
  * Some of the tests includes: Each function of the BasePlayer class
