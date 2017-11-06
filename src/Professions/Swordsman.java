@@ -2,14 +2,14 @@ package Professions;
 
 public class Swordsman extends BasePlayer{
 	private String weaponName;
-	private static double health = 20000.0;
-	private static double armor = 200;
-	private static double attack = 200;
-	private static double mana = 2000;
-	private static double xp = 0;
+	private final static double HEALTH = 20000.0;
+	private final static double ARMOR = 200;
+	private final static double ATTACK = 200;
+	private final static double MANA = 2000;
+	private final static double XP = 0;
 
 	public Swordsman(String n, String weaponName){
-		super(n, health, armor, attack, mana, xp);
+		super(n, HEALTH, ARMOR, ATTACK, MANA, XP);
 		setWeaponName(weaponName);
 	}
 
