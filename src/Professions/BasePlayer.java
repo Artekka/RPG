@@ -10,98 +10,108 @@ package Professions;
 public abstract class BasePlayer {
 	
 	private String name;
-	private double Health;
-	private double Armor;
-	private double Attack;
-	private double Mana;
-	private double Exp;
+	private double health;
+	private double armor;
+	private double attack;
+	private double mana;
+	private double exp;
 	
-public BasePlayer(String n, double h, double arm, double attk, double mana, double xp )
+	private final static double MAX_HEALTH = 10000.0;
+	private final static double MIN_HEALTH = 0;
+	private final static double MAX_MANA = 10000.0;
+	private final static double MIN_MANA = 0;
+	
+public BasePlayer(String name, double health, double armor, double attack, double mana, double xp )
 {
-	setName(n);
-	setHealth(h);
-	setArmor(arm);
-	setAttack(attk);
+	setName(name);
+	setHealth(health);
+	setArmor(armor);
+	setAttack(attack);
 	setMana(mana);
 	setExp(xp);
 }
 public double getHealth() {
-	return Health;
+	return health;
 }
 public void setHealth(double health) {
-	Health = health;
+	this.health = health;
 }
 
-public void addHealth(double healthbonus){ //Make more complex later
-	if(Health < 10000.0){
-		Health += healthbonus;
+public boolean addHealth(double healthbonus){ //Make more complex later
+	if(health < MAX_HEALTH){
+		health += healthbonus;
+		return true;
 	}else{
-		System.out.println("Already at max hp");
+		return false;
 	}
 }
 
-public void subtractHealth(double healthbonus){ //Make more complex later
-	if(Health > 0){
-		Health -= healthbonus;
-		System.out.println(this.getName()+ " Says: Yeowch!\n");
+public boolean subtractHealth(double healthDeficit){ //Make more complex later
+	if(health > MIN_HEALTH){
+		health -= healthDeficit;
+		return true;
+		
 	}else{
-		System.out.println(this.getName() + " is Dead!");
+		return false;
 	}
 }
 
 
 
 public double getArmor() {
-	return Armor;
+	return this.armor;
 }
 public void setArmor(double armor) {
-	Armor = armor;
+	this.armor = armor;
 }
 
 public double getMana() {
-	return Mana;
+	return mana;
 }
 public void setMana(double mana) {
-	Mana = mana;
+	this.mana = mana;
 }
-public void addMana(double manaBonus){ //Make more complex later
-	if(Mana < 10000.0){
-		Mana += manaBonus;
+public boolean addMana(double manaBonus){ //Make more complex later
+	if(mana < MAX_MANA){
+		mana += manaBonus;
+		return true;
 	}else{
-		System.out.println("Already at max hp");
+		return false;
 	}
 }
-public void subtractMana(double manaBonus){ //Make more complex later
-	if(Mana > 0.0){
-		Mana -= manaBonus;
+public boolean subtractMana(double manaDeficit){ //Make more complex later
+	if(mana > MIN_MANA){
+		mana -= manaDeficit;
+		return true;
 	} else{
-		System.out.println("You are OOM");
+		return false;
 	}
 }
 
 
 public double getAttack() {
-	return Attack;
+	return attack;
 }
 
 
 
 public void setAttack(double attack) {
 
-	Attack = attack;
+	this.attack = attack;
 }
 
 
-public void attack(BasePlayer n){
+public boolean attack(BasePlayer n){
 	n.subtractHealth(this.getAttack());
+	return true;
 }
 
 
 public double getExp() {
-	return Exp;
+	return exp;
 }
 public void setExp(double exp) {
-	Exp = exp;
+	this.exp = exp;
 }
 
 public String getName() {
