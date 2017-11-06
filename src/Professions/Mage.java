@@ -5,7 +5,7 @@ package Professions;
 public class Mage extends BasePlayer {
 	
 	private String weaponName;
-	private static double health = 15000;
+	private static double health = 1500;
 	private static double armor = 100;
 	private static double attack = 300;
 	private static double mana = 2500;

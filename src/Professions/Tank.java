@@ -3,7 +3,7 @@ package Professions;
 public class Tank extends BasePlayer{
 	
 	private String weaponName;
-	private static double health = 15000;
+	private static double health = 1500;
 	private static double armor = 100;
 	private static double attack = 350;
 	private static double mana = 1500;

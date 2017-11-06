@@ -11,7 +11,7 @@ public class Swordsman extends BasePlayer{
 	 * We are going to hard code these values in the Swordsman class so the stats can never be changed by user
 	 */
 	private String weaponName;
-	private static double health = 20000.0;
+	private static double health = 2000.0;
 	private static double armor = 200;
 	private static double attack = 200;
 	private static double mana = 2000;

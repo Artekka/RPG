@@ -61,7 +61,7 @@ public class Game {
 		classes[3] = "Mage";
 		
 		Random random = new Random();
-		int ranNum = random.nextInt(4) + 0;
+		int ranNum = random.nextInt(4);
 		
 		//String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,classes,"select a class");
 		//String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
