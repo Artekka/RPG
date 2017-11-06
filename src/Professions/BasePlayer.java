@@ -7,7 +7,7 @@ package Professions;
  * They will have the ability to gain or lose health and mana.
  */
 
-public class BasePlayer {
+public abstract class BasePlayer {
 	
 	private String name;
 	private double Health;
@@ -79,21 +79,21 @@ public void subtractMana(double manaBonus){ //Make more complex later
 	}
 }
 
+
 public double getAttack() {
 	return Attack;
 }
+
+
+
 public void setAttack(double attack) {
 
 	Attack = attack;
 }
 
 
-/*
- * Each character has their own taunt and weapon name, thus we have no output for this
- */
 public void attack(BasePlayer n){
-	//System.out.println(this.getName() + "uses  "+ this.getWeaponName() + " on "+n.getName());
-	//n.subtractHealth(this.getAttack());
+	n.subtractHealth(this.getAttack());
 }
 
 

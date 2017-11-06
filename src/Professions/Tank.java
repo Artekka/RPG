@@ -9,6 +9,8 @@ public class Tank extends BasePlayer{
 	private final static double BASE_MANA = 1500;
 	private final static double BASE_XP = 0;
 	
+	public final static String Taunt = "My sheild is here for you.";
+	
 	public Tank(String n, String weaponName){
 		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
 		setWeaponName(weaponName);
@@ -19,13 +21,6 @@ public class Tank extends BasePlayer{
 
 	public void setWeaponName(String weaponName) {
 		this.weaponName = weaponName;
-	}
-	
-	
-	public void attack(BasePlayer n){
-		System.out.println(battleCry() + this.getName() + " uses "+ this.getWeaponName() + " on "+n.getName()
-		+ "\n");
-		n.subtractHealth(this.getAttack());
 	}
 	
 	public String battleCry(){

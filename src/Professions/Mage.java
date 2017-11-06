@@ -11,6 +11,8 @@ public class Mage extends BasePlayer {
 	private final static double BASE_MANA = 2500;
 	private final static double BASE_XP = 0;
 	
+	public final static String TAUNT = " Magic is beleiving in yourself, if you can do that, you can make anything. \n";
+	
 	public Mage(String name, String weaponName){
 		super(name, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
 		setWeaponName(weaponName);
@@ -24,12 +26,6 @@ public class Mage extends BasePlayer {
 		this.weaponName = weaponName;
 	}
 	
-	
-	public void attack(BasePlayer n){
-		System.out.println(battleCry() + this.getName() + " uses "+ this.getWeaponName() + " on "+n.getName()
-		+ "\n");
-		n.subtractHealth(this.getAttack());
-	}
 	
 	
 	public String battleCry(){

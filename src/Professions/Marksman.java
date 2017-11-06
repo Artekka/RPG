@@ -9,6 +9,8 @@ public class Marksman extends BasePlayer{
 	private final static double BASE_MANA = 1500;
 	private final static double BASE_XP = 0;
 	
+	public final static String TAUNT = "All the world on one arrow!";
+	
 	public Marksman(String n, String weaponName){
 		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
 		setWeaponName(weaponName);
@@ -22,11 +24,6 @@ public class Marksman extends BasePlayer{
 		this.weaponName = weaponName;
 	}
 	
-	public void attack(BasePlayer n){
-		System.out.println(battleCry() + this.getName() + " uses "+ this.getWeaponName() + " on "+n.getName()
-		+ "\n");
-		n.subtractHealth(this.getAttack());
-	}
 	
 	public String battleCry(){
 		return this.getName() +" says: All the world on one arrow.\n";

@@ -7,6 +7,8 @@ public class Swordsman extends BasePlayer{
 	private final static double BASE_ATTACK = 200;
 	private final static double BASE_MANA = 2000;
 	private final static double BASE_XP = 0;
+	
+	public final static String TAUNT = "This time, victory is mine!";
 
 	public Swordsman(String n, String weaponName){
 		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
@@ -19,13 +21,6 @@ public class Swordsman extends BasePlayer{
 
 	public void setWeaponName(String weaponName) {
 		this.weaponName = weaponName;
-	}
-	
-	
-	public void attack(BasePlayer n){
-		System.out.println(battleCry() + this.getName() + " uses "+ this.getWeaponName() + " on "+n.getName()
-		+ "\n");
-		n.subtractHealth(this.getAttack());
 	}
 	
 	
