@@ -16,7 +16,7 @@ public class BasePlayer {
 	private double Mana;
 	private double Exp;
 	
-public BasePlayer(String n, double h, double arm, double attk, double mana, double xp)
+public BasePlayer(String n, double h, double arm, double attk, double mana, double xp )
 {
 	setName(n);
 	setHealth(h);
