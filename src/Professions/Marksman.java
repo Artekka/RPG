@@ -3,14 +3,14 @@ package Professions;
 public class Marksman extends BasePlayer{
 	
 	private String weaponName;
-	private final static double HEALTH = 15000;
-	private final static double ARMOR = 100;
-	private final static double ATTACK = 350;
-	private final static double MANA = 1500;
-	private final static double XP = 0;
+	private final static double BASE_HEALTH = 15000;
+	private final static double BASE_ARMOR = 100;
+	private final static double BASE_ATTACK = 350;
+	private final static double BASE_MANA = 1500;
+	private final static double BASE_XP = 0;
 	
 	public Marksman(String n, String weaponName){
-		super(n, HEALTH, ARMOR, ATTACK, MANA, XP);
+		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
 		setWeaponName(weaponName);
 	}
 	

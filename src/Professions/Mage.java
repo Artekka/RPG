@@ -5,14 +5,14 @@ package Professions;
 public class Mage extends BasePlayer {
 	
 	private String weaponName;
-	private final static double HEALTH = 15000;
-	private final static double ARMOR = 100;
-	private final static double ATTACK = 300;
-	private final static double MANA = 2500;
-	private final static double XP = 0;
+	private final static double BASE_HEALTH = 15000;
+	private final static double BASE_ARMOR = 100;
+	private final static double BASE_ATTACK = 300;
+	private final static double BASE_MANA = 2500;
+	private final static double BASE_XP = 0;
 	
 	public Mage(String name, String weaponName){
-		super(name, HEALTH, ARMOR, ATTACK, MANA, XP);
+		super(name, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
 		setWeaponName(weaponName);
 	}
 	
