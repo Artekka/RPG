@@ -13,16 +13,21 @@ import Professions.Marksman;
 import Professions.Swordsman;
 import Professions.Tank;
 import java.util.HashMap;
-
 import java.util.Random;
 
 
 
+
+
+
 public class Game {
-	public enum Names {MAGE,MARKSMAN,SWORDSMAN,TANK}
+	private enum Names {MAGE,MARKSMAN,SWORDSMAN,TANK}
+	public enum Enemy_names {CHUCKY,BONES,CROW,DAMIEN}
 
 	public static void main(String args[]){
-		fight(createCharacter(),createEnemy());
+		//fight(createCharacter(),createEnemy());
+		
+		//createOurCharacter();
 		
 		Game game = new Game();
 		game.run();
@@ -36,53 +41,41 @@ public class Game {
 	
 	
 	
-	public static BasePlayer createCharacter(){
-		
+	public static BasePlayer createPlayer(Boolean player){
 		HashMap<String, BasePlayer> createsCharacter = new HashMap<>();
+		//HashMap<String,BasePlayer> createsEnemY = new HashMap<>();
+		
 		
 		Names[] names = {Names.MAGE,Names.MARKSMAN,Names.SWORDSMAN,Names.TANK};
-		
 		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class").toString();
 		String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
 		String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
-		
-		createsCharacter.put(Names.SWORDSMAN.toString(), new Swordsman(name,nameOfWeapon));
+			
+		createsCharacter.put(Names.SWORDSMAN.toString(), new Swordsman(name, nameOfWeapon));
 		createsCharacter.put(Names.MARKSMAN.toString(), new Marksman(name,nameOfWeapon));
 		createsCharacter.put(Names.TANK.toString(), new Tank(name, nameOfWeapon));
 		createsCharacter.put(Names.MAGE.toString(), new Mage(name,nameOfWeapon));
-		
-		BasePlayer character = createsCharacter.get(classSelection);
-		
-		return character;
-	
-	}
-	
-	public static BasePlayer createEnemy(){
-		String[] classes = new String[4];
-		classes[0] = "Swordsman";
-		classes[1] = "Marksman";
-		classes[2] = "Tank";
-		classes[3] = "Mage";
-		
-		Random random = new Random();
-		int ranNum = random.nextInt(4);
-		
-		if(ranNum == 0){
-			BasePlayer swordsDude = new Swordsman("Enemy","Death Sword");
-			return swordsDude;
-		}else if(ranNum==1){
-			BasePlayer marksmanDude = new Marksman("Enemy","Bow of death");
-			return marksmanDude;
-		}else if(ranNum == 2){
-			BasePlayer tankDude = new Tank("Enemy","Bad shield");
-			return tankDude;
 			
-		}else{
-			BasePlayer mageDude = new Mage("Enemy","Staff of death");
-			return mageDude;
+		BasePlayer character = createsCharacter.get(classSelection);
+			
+		if(!player){
+			String enemyName = "Enemy";
+			String enemyWeapon = "Sparkle Glitter";
+			
+			Random number = new Random();
+			int value = number.nextInt(Names.values().length);
+			String key = Names.values()[value].toString();
+			BasePlayer enemy = createsCharacter.get(key);
+			enemy.setName(enemyName);
+			enemy.setWeaponName(enemyWeapon);
+			
+			return enemy;
 		}
 		
+		return character;
+		
 	}
+	
 	
 	public static void fight(BasePlayer player, BasePlayer Enemy){
 		/*
