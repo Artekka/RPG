@@ -1,7 +1,7 @@
 package Professions;
 
 public class Swordsman extends BasePlayer{
-	private String weaponName;
+	
 	private final static double BASE_HEALTH = 20000.0;
 	private final static double BASE_ARMOR = 200;
 	private final static double BASE_ATTACK = 200;
@@ -11,19 +11,11 @@ public class Swordsman extends BasePlayer{
 	public final static String TAUNT = "This time, victory is mine!";
 
 	public Swordsman(String n, String weaponName){
-		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
+		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP, weaponName);
 		setWeaponName(weaponName);
 	}
 
-	public String getWeaponName() {
-		return weaponName;
-	}
 
-	public void setWeaponName(String weaponName) {
-		this.weaponName = weaponName;
-	}
-	
-	
 	public String battleCry(){
 		return getName() + " Says: This time, victory is mine!\n ";
 	}

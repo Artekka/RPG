@@ -2,7 +2,6 @@ package Professions;
 
 public class Marksman extends BasePlayer{
 	
-	private String weaponName;
 	private final static double BASE_HEALTH = 15000;
 	private final static double BASE_ARMOR = 100;
 	private final static double BASE_ATTACK = 350;
@@ -12,20 +11,11 @@ public class Marksman extends BasePlayer{
 	public final static String TAUNT = "All the world on one arrow!";
 	
 	public Marksman(String n, String weaponName){
-		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP);
-		setWeaponName(weaponName);
+		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP, weaponName);
+		
 	}
 	
-	public String getWeaponName() {
-		return weaponName;
-	}
-
-	public void setWeaponName(String weaponName) {
-		this.weaponName = weaponName;
-	}
-	
-	
-	public String battleCry(){
+public String battleCry(){
 		return this.getName() +" says: All the world on one arrow.\n";
 	}
 	

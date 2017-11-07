@@ -15,13 +15,14 @@ public abstract class BasePlayer {
 	private double attack;
 	private double mana;
 	private double exp;
+	private String weaponName;
 	
 	private final static double MAX_HEALTH = 10000.0;
 	private final static double MIN_HEALTH = 0;
 	private final static double MAX_MANA = 10000.0;
 	private final static double MIN_MANA = 0;
 	
-public BasePlayer(String name, double health, double armor, double attack, double mana, double xp )
+public BasePlayer(String name, double health, double armor, double attack, double mana, double xp,String weaponName )
 {
 	setName(name);
 	setHealth(health);
@@ -29,6 +30,7 @@ public BasePlayer(String name, double health, double armor, double attack, doubl
 	setAttack(attack);
 	setMana(mana);
 	setExp(xp);
+	setWeaponName(weaponName);
 }
 public double getHealth() {
 	return health;
@@ -124,6 +126,12 @@ public void setName(String name) {
 
 public String toString(){
 	return name;
+}
+public String getWeaponName() {
+	return weaponName;
+}
+public void setWeaponName(String weaponName) {
+	this.weaponName = weaponName;
 }
 
 
