@@ -12,7 +12,6 @@ public class Swordsman extends BasePlayer{
 
 	public Swordsman(String n, String weaponName){
 		super(n, BASE_HEALTH, BASE_ARMOR, BASE_ATTACK, BASE_MANA, BASE_XP, weaponName);
-		setWeaponName(weaponName);
 	}
 
 
