@@ -12,47 +12,48 @@ import Professions.Mage;
 import Professions.Marksman;
 import Professions.Swordsman;
 import Professions.Tank;
+import java.util.HashMap;
 
 import java.util.Random;
 
+
+
 public class Game {
-	
-	
+	public enum Names {Mage,Marksman,Swordsman,Tank}
+
 	public static void main(String args[]){
 		fight(createCharacter(),createEnemy());
 		
+		Game game = new Game();
+		game.run();
 		
 	}
 	
+	
+	public void run(){
+		
+	}
+	
+	
+	
 	public static BasePlayer createCharacter(){
-		String[] classes = new String[4];
-		classes[0] = "Swordsman";
-		classes[1] = "Marksman";
-		classes[2] = "Tank";
-		classes[3] = "Mage";
-		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,classes,"select a class");
+		
+		HashMap<String, BasePlayer> creatsCharacter = new HashMap<>();
+		
+		Names[] names = {Names.Mage,Names.Marksman,Names.Swordsman,Names.Tank};
+		
+		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class");
 		String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
 		String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
 		
-		if(classSelection.equals(classes[0])){
-			BasePlayer swordsDude = new Swordsman(name,nameOfWeapon);
-			return swordsDude;
-		}else if(classSelection.equals(classes[1])){
-			BasePlayer marksmanDude = new Marksman(name,nameOfWeapon);
-			return marksmanDude;
-		}else if(classSelection.equals(classes[2])){
-			BasePlayer tankDude = new Tank(name,nameOfWeapon);
-			return tankDude;
-		}else{
-			BasePlayer mageDude = new Mage(name,nameOfWeapon);
-			return mageDude;
-		}
-		
-		
-		
-		
+		creatsCharacter.put("Swordsman", new Swordsman(name,nameOfWeapon));
+		creatsCharacter.put("Marksman", new Marksman(name,nameOfWeapon));
+		creatsCharacter.put("Tank", new Tank(name, nameOfWeapon));
+		creatsCharacter.put("Mage", new Mage(name,nameOfWeapon));
+		return null;
+	
 	}
-
+	
 	public static BasePlayer createEnemy(){
 		String[] classes = new String[4];
 		classes[0] = "Swordsman";
@@ -61,11 +62,7 @@ public class Game {
 		classes[3] = "Mage";
 		
 		Random random = new Random();
-		int ranNum = random.nextInt(4) + 0;
-		
-		//String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,classes,"select a class");
-		//String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
-		//String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
+		int ranNum = random.nextInt(4);
 		
 		if(ranNum == 0){
 			BasePlayer swordsDude = new Swordsman("Enemy","Death Sword");
@@ -81,6 +78,7 @@ public class Game {
 			BasePlayer mageDude = new Mage("Enemy","Staff of death");
 			return mageDude;
 		}
+		
 	}
 	
 	public static void fight(BasePlayer player, BasePlayer Enemy){
@@ -114,3 +112,5 @@ public class Game {
 		
 	}
 }
+
+
