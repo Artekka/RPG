@@ -16,34 +16,25 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-
-
-
-
 public class Game {
+	
+	//Game game = new Game();
 	private enum Names {MAGE,MARKSMAN,SWORDSMAN,TANK}
 	public enum Enemy_names {CHUCKY,BONES,CROW,DAMIEN}
 
 	public static void main(String args[]){
-		//fight(createCharacter(),createEnemy());
-		
-		//createOurCharacter();
-		
 		Game game = new Game();
 		game.run();
 		
 	}
-	
-	
+
 	public void run(){
-		
+		this.createPlayer(true);
 	}
+
 	
-	
-	
-	public static BasePlayer createPlayer(Boolean player){
+	public BasePlayer createPlayer(Boolean player){
 		HashMap<String, BasePlayer> createsCharacter = new HashMap<>();
-		//HashMap<String,BasePlayer> createsEnemY = new HashMap<>();
 		
 		
 		Names[] names = {Names.MAGE,Names.MARKSMAN,Names.SWORDSMAN,Names.TANK};
