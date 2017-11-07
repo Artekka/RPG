@@ -22,7 +22,7 @@ public abstract class BasePlayer {
 	private final static double MAX_MANA = 10000.0;
 	private final static double MIN_MANA = 0;
 	
-public BasePlayer(String name, double health, double armor, double attack, double mana, double xp,String weaponName )
+public BasePlayer(String name, double health, double armor, double attack, double mana, double xp,String weaponName)
 {
 	setName(name);
 	setHealth(health);
