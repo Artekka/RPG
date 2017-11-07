@@ -18,38 +18,26 @@ import java.util.Random;
 
 public class Game {
 	
-	//Game game = new Game();
-	private enum Names {MAGE,MARKSMAN,SWORDSMAN,TANK}
-	public enum Enemy_names {CHUCKY,BONES,CROW,DAMIEN}
+	
+	private enum Names { MAGE,MARKSMAN,SWORDSMAN,TANK }
+	
 
-	public static void main(String args[]){
+	public static void main(String args[]) {
 		Game game = new Game();
 		game.run();
 		
 	}
 
-	public void run(){
+	public void run() {
 		this.createPlayer(true);
 	}
 
 	
-	public BasePlayer createPlayer(Boolean player){
+	public BasePlayer createPlayer(Boolean player) {
 		HashMap<String, BasePlayer> createsCharacter = new HashMap<>();
-		
-		
 		Names[] names = {Names.MAGE,Names.MARKSMAN,Names.SWORDSMAN,Names.TANK};
-		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class").toString();
-		String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
-		String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
-			
-		createsCharacter.put(Names.SWORDSMAN.toString(), new Swordsman(name, nameOfWeapon));
-		createsCharacter.put(Names.MARKSMAN.toString(), new Marksman(name,nameOfWeapon));
-		createsCharacter.put(Names.TANK.toString(), new Tank(name, nameOfWeapon));
-		createsCharacter.put(Names.MAGE.toString(), new Mage(name,nameOfWeapon));
-			
-		BasePlayer character = createsCharacter.get(classSelection);
-			
-		if(!player){
+		
+		if(!player) {
 			String enemyName = "Enemy";
 			String enemyWeapon = "Sparkle Glitter";
 			
@@ -63,12 +51,26 @@ public class Game {
 			return enemy;
 		}
 		
+		
+		
+		
+		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class").toString();
+		String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
+		String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
+			
+		createsCharacter.put(Names.SWORDSMAN.toString(), new Swordsman(name, nameOfWeapon));
+		createsCharacter.put(Names.MARKSMAN.toString(), new Marksman(name,nameOfWeapon));
+		createsCharacter.put(Names.TANK.toString(), new Tank(name, nameOfWeapon));
+		createsCharacter.put(Names.MAGE.toString(), new Mage(name,nameOfWeapon));
+			
+		BasePlayer character = createsCharacter.get(classSelection);
+
 		return character;
 		
 	}
 	
 	
-	public static void fight(BasePlayer player, BasePlayer Enemy){
+	public static void fight(BasePlayer player, BasePlayer Enemy) {
 		/*
 		Random Turn = new Random();
 		Random Turn2 = new Random();
