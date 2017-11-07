@@ -19,7 +19,7 @@ import java.util.Random;
 
 
 public class Game {
-	public enum Names {Mage,Marksman,Swordsman,Tank}
+	public enum Names {MAGE,MARKSMAN,SWORDSMAN,TANK}
 
 	public static void main(String args[]){
 		fight(createCharacter(),createEnemy());
@@ -38,19 +38,22 @@ public class Game {
 	
 	public static BasePlayer createCharacter(){
 		
-		HashMap<String, BasePlayer> creatsCharacter = new HashMap<>();
+		HashMap<String, BasePlayer> createsCharacter = new HashMap<>();
 		
-		Names[] names = {Names.Mage,Names.Marksman,Names.Swordsman,Names.Tank};
+		Names[] names = {Names.MAGE,Names.MARKSMAN,Names.SWORDSMAN,Names.TANK};
 		
-		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class");
+		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class").toString();
 		String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
 		String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
 		
-		creatsCharacter.put("Swordsman", new Swordsman(name,nameOfWeapon));
-		creatsCharacter.put("Marksman", new Marksman(name,nameOfWeapon));
-		creatsCharacter.put("Tank", new Tank(name, nameOfWeapon));
-		creatsCharacter.put("Mage", new Mage(name,nameOfWeapon));
-		return null;
+		createsCharacter.put(Names.SWORDSMAN.toString(), new Swordsman(name,nameOfWeapon));
+		createsCharacter.put(Names.MARKSMAN.toString(), new Marksman(name,nameOfWeapon));
+		createsCharacter.put(Names.TANK.toString(), new Tank(name, nameOfWeapon));
+		createsCharacter.put(Names.MAGE.toString(), new Mage(name,nameOfWeapon));
+		
+		BasePlayer character = createsCharacter.get(classSelection);
+		
+		return character;
 	
 	}
 	
