@@ -3,8 +3,7 @@ package Runner;
  * This class contains the main
  */
 
-
-
+import java.util.function.*;
 import javax.swing.JOptionPane;
 
 import Professions.BasePlayer;
@@ -18,13 +17,13 @@ import java.util.Random;
 
 public class Game {
 	
-	
 	private enum Names { MAGE,MARKSMAN,SWORDSMAN,TANK }
 	
 
 	public static void main(String args[]) {
 		Game game = new Game();
 		game.run();
+		
 		
 	}
 
@@ -57,11 +56,16 @@ public class Game {
 		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class").toString();
 		String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
 		String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
+		
+		BiFunction<String,String,Swordsman> createSwordsman = Swordsman::new;
+		BiFunction<String,String,Marksman> createMarksman = Marksman::new;
+		BiFunction<String,String,Tank> createTank = Tank::new;
+		BiFunction<String,String,Mage> createMage = Mage::new;
 			
-		createsCharacter.put(Names.SWORDSMAN.toString(), new Swordsman(name, nameOfWeapon));
-		createsCharacter.put(Names.MARKSMAN.toString(), new Marksman(name,nameOfWeapon));
-		createsCharacter.put(Names.TANK.toString(), new Tank(name, nameOfWeapon));
-		createsCharacter.put(Names.MAGE.toString(), new Mage(name,nameOfWeapon));
+		createsCharacter.put(Names.SWORDSMAN.toString(), (BasePlayer) createSwordsman.apply(name,nameOfWeapon));
+		createsCharacter.put(Names.MARKSMAN.toString(), (BasePlayer) createMarksman.apply(name, nameOfWeapon));
+		createsCharacter.put(Names.TANK.toString(), (BasePlayer) createTank.apply(name, nameOfWeapon));
+		createsCharacter.put(Names.MAGE.toString(), (BasePlayer) createMage.apply(name, nameOfWeapon));
 			
 		BasePlayer character = createsCharacter.get(classSelection);
 
@@ -69,17 +73,9 @@ public class Game {
 		
 	}
 	
-	
+
 	public static void fight(BasePlayer player, BasePlayer Enemy) {
-		/*
-		Random Turn = new Random();
-		Random Turn2 = new Random();
-		int playerTurn = Turn.nextInt(100);
-		int enemyTurn = Turn2.nextInt(100);
-		*/
-		
-		
-		//System.out.println(player.getName());
+
 		System.out.print(player.getName() + " vs " + Enemy.getName());
 		
 		int round = 1;
