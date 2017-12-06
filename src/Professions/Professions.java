@@ -17,9 +17,6 @@ import java.util.function.BiFunction;
  *
  */
 public class Professions {
-	public static final String DEFAULT_ENEMY_NAME = "Enemy";
-	public static final String DEFAULT_ENEMY_WEAPON_NAME = "Sparkle Glitter";
-	
 	public static final Set<String> ALLOWED_PROFESSION_NAMES;
 	private static final List<String> ALLOWED_PROFESSION_NAMES_INDEXABLE;
 	private static final Map<String, BiFunction<String, String, BasePlayer>> PROFESSION_NAME_TO_CONSTRUCTOR;

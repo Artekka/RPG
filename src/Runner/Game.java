@@ -26,6 +26,8 @@ import java.util.Set;
 
 public class Game {
 	private static final int NUM_ROUNDS = 100;
+	public static final String DEFAULT_ENEMY_NAME = "Enemy";
+	public static final String DEFAULT_ENEMY_WEAPON_NAME = "Sparkle Glitter";
 	private final Random rng;
 	
 	public Game() {
@@ -39,34 +41,29 @@ public class Game {
 	}
 
 	public void run() {
-		final BasePlayer player = this.createPlayer(true),
-				enemy = this.createPlayer(false);
+		final BasePlayer player = this.createPlayer(),
+				enemy = this.createEnemy();
 		
 		this.fight(player, enemy);
-		
 	}
 
-	public BasePlayer createPlayer(final boolean isPlayer) {
-		final String profession, playerName, weaponName;
-		
-		if (isPlayer) {
-			profession = JOptionPane.showInputDialog(null,
+	public BasePlayer createPlayer() {
+		final String profession = JOptionPane.showInputDialog(null,
 					"Pick a class!", "Class Selection",
 					JOptionPane.QUESTION_MESSAGE, null,
-					Professions.ALLOWED_PROFESSION_NAMES.toArray(), "select a class").toString(); // remove toString()
-			if (!Professions.isValidProfession(profession)) {
-				throw new IllegalStateException("This should never happen.");
-			}
-			playerName = JOptionPane.showInputDialog(null, "Enter the name of your " + profession);
-			weaponName = JOptionPane.showInputDialog(null, "Enter the name of your Weapon");
-		}
-		else {
-			profession = Professions.getRandomProfession(this.rng);
-			playerName = Professions.DEFAULT_ENEMY_NAME;
-			weaponName = Professions.DEFAULT_ENEMY_WEAPON_NAME;
+					Professions.ALLOWED_PROFESSION_NAMES.toArray(), "select a class").toString();
+		if (!Professions.isValidProfession(profession)) {
+			throw new IllegalStateException("This should never happen.");
 		}
 		
+		final String playerName = JOptionPane.showInputDialog(null, "Enter the name of your " + profession);
+		final String weaponName = JOptionPane.showInputDialog(null, "Enter the name of your Weapon");
+		
 		return Professions.getPlayerForProfession(profession, playerName, weaponName);
+	}
+	
+	public BasePlayer createEnemy() {
+		return Professions.getPlayerForProfession(Professions.getRandomProfession(this.rng), DEFAULT_ENEMY_NAME, DEFAULT_ENEMY_WEAPON_NAME);
 	}
 	
 	public void fight(final BasePlayer player, final BasePlayer enemy) {
@@ -74,14 +71,12 @@ public class Game {
 		
 		while (player.getHealth() > 0 && enemy.getHealth() > 0) {
 			final int roll = rng.nextInt(2); // 0 or 1
-			
 			final BasePlayer attacker = roll == 0 ? player : enemy,
 							 defender = roll == 1 ? player : enemy;
 			
 			final double damageDone = attacker.attack(defender);
 			
 			System.out.println(attacker.getName() + " did " + damageDone + " damage to " + defender.getName());
-			
 			System.out.println(player.getName() + "'s health: " + player.getHealth() + " | " + enemy.getName() + "'s health: " + enemy.getHealth());
 		}
 		
