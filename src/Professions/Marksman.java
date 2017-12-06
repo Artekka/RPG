@@ -1,6 +1,6 @@
 package Professions;
 
-public class Marksman extends BasePlayer{
+public class Marksman extends BasePlayer {
 	
 	private final static double BASE_HEALTH = 15000;
 	private final static double BASE_ARMOR = 100;

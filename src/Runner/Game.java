@@ -3,99 +3,71 @@ package Runner;
  * This class contains the main
  */
 
-import java.util.function.*;
 import javax.swing.JOptionPane;
 
 import Professions.BasePlayer;
-import Professions.Mage;
-import Professions.Marksman;
-import Professions.Swordsman;
-import Professions.Tank;
-import java.util.HashMap;
+import Professions.Professions;
+
 import java.util.Random;
 
 
 public class Game {
+	public static final String DEFAULT_ENEMY_NAME = "Enemy";
+	public static final String DEFAULT_ENEMY_WEAPON_NAME = "Sparkle Glitter";
+	private final Random rng;
 	
-	private enum Names { MAGE,MARKSMAN,SWORDSMAN,TANK }
+	public Game() {
+		// One psuedo-random number generator for the entire game; bypasses LCG issues.
+		this.rng = new Random();
+	}
 	
-
 	public static void main(String args[]) {
 		Game game = new Game();
 		game.run();
-		
-		
 	}
 
 	public void run() {
-		this.createPlayer(true);
+		final BasePlayer player = this.createPlayer(),
+				enemy = this.createEnemy();
+		
+		this.fight(player, enemy);
 	}
 
-	
-	public BasePlayer createPlayer(Boolean player) {
-		HashMap<String, BasePlayer> createsCharacter = new HashMap<>();
-		Names[] names = {Names.MAGE,Names.MARKSMAN,Names.SWORDSMAN,Names.TANK};
-		
-		if(!player) {
-			String enemyName = "Enemy";
-			String enemyWeapon = "Sparkle Glitter";
-			
-			Random number = new Random();
-			int value = number.nextInt(Names.values().length);
-			String key = Names.values()[value].toString();
-			BasePlayer enemy = createsCharacter.get(key);
-			enemy.setName(enemyName);
-			enemy.setWeaponName(enemyWeapon);
-			
-			return enemy;
+	public BasePlayer createPlayer() {
+		final String profession = JOptionPane.showInputDialog(null,
+					"Pick a class!", "Class Selection",
+					JOptionPane.QUESTION_MESSAGE, null,
+					Professions.ALLOWED_PROFESSION_NAMES.toArray(), "select a class").toString();
+		if (!Professions.isValidProfession(profession)) {
+			throw new IllegalStateException("Invalid profession entered. This should never happen.");
 		}
 		
+		final String playerName = JOptionPane.showInputDialog(null, "Enter the name of your " + profession);
+		final String weaponName = JOptionPane.showInputDialog(null, "Enter the name of your Weapon");
 		
-		
-		
-		String classSelection = (String) JOptionPane.showInputDialog(null,"Pick a class!", "Class Selection",JOptionPane.QUESTION_MESSAGE,null,names,"select a class").toString();
-		String name = (String) JOptionPane.showInputDialog(null,"Enter the name of your " + classSelection);
-		String nameOfWeapon = (String) JOptionPane.showInputDialog(null,"Enter the name of your Weapon");
-		
-		BiFunction<String,String,Swordsman> createSwordsman = Swordsman::new;
-		BiFunction<String,String,Marksman> createMarksman = Marksman::new;
-		BiFunction<String,String,Tank> createTank = Tank::new;
-		BiFunction<String,String,Mage> createMage = Mage::new;
-			
-		createsCharacter.put(Names.SWORDSMAN.toString(), (BasePlayer) createSwordsman.apply(name,nameOfWeapon));
-		createsCharacter.put(Names.MARKSMAN.toString(), (BasePlayer) createMarksman.apply(name, nameOfWeapon));
-		createsCharacter.put(Names.TANK.toString(), (BasePlayer) createTank.apply(name, nameOfWeapon));
-		createsCharacter.put(Names.MAGE.toString(), (BasePlayer) createMage.apply(name, nameOfWeapon));
-			
-		BasePlayer character = createsCharacter.get(classSelection);
-
-		return character;
-		
+		return Professions.getPlayerForProfession(profession, playerName, weaponName);
 	}
 	
-
-	public static void fight(BasePlayer player, BasePlayer Enemy) {
-
-		System.out.print(player.getName() + " vs " + Enemy.getName());
+	public BasePlayer createEnemy() {
+		return Professions.getPlayerForProfession(Professions.getRandomProfession(this.rng), DEFAULT_ENEMY_NAME, DEFAULT_ENEMY_WEAPON_NAME);
+	}
+	
+	public void fight(final BasePlayer player, final BasePlayer enemy) {
+		System.out.print(player.getName() + " vs " + enemy.getName());
 		
-		int round = 1;
-		while(round > 0){
-			while(player.getHealth() > 0 || Enemy.getHealth() > 0){
-				Random Turn = new Random();
-				Random Turn2 = new Random();
-				int playerTurn = Turn.nextInt(100);
-				int enemyTurn = Turn2.nextInt(100);
-				
-				if(playerTurn > enemyTurn){
-					player.attack(Enemy);
-				}else{
-					Enemy.attack(player);
-				}
-			}
-			round = -2;
+		while (player.getHealth() > 0 && enemy.getHealth() > 0) {
+			final int roll = rng.nextInt(2); // 0 or 1
+			final BasePlayer attacker = roll == 0 ? player : enemy,
+							 defender = roll == 1 ? player : enemy;
+			
+			final double damageDone = attacker.attack(defender);
+			
+			System.out.println(attacker.getName() + " did " + damageDone + " damage to " + defender.getName());
+			System.out.println(player.getName() + "'s health: " + player.getHealth() + " | " + enemy.getName() + "'s health: " + enemy.getHealth());
 		}
 		
+		final BasePlayer winner = player.getHealth() > 0 ? player : enemy;
+		System.out.println("The winner is " + winner.getName() + "!");
 	}
 }
-
 
