@@ -20,6 +20,11 @@ public class Professions {
 	public static final Set<String> ALLOWED_PROFESSION_NAMES;
 	private static final List<String> ALLOWED_PROFESSION_NAMES_INDEXABLE;
 	private static final Map<String, BiFunction<String, String, BasePlayer>> PROFESSION_NAME_TO_CONSTRUCTOR;
+	
+	private static final String MAGE = "MAGE";
+	private static final String MARKSMAN = "MARKSMAN";
+	private static final String SWORDSMAN = "SWORDSMAN";
+	private static final String TANK = "TANK";
 
 	/**
 	 * Static initializer block.
@@ -28,18 +33,18 @@ public class Professions {
 	 */
 	static {
 		final Set<String> setBuilder = new HashSet<>();
-		setBuilder.add("MAGE");
-		setBuilder.add("MARKSMAN");
-		setBuilder.add("SWORDSMAN");
-		setBuilder.add("TANK");
+		setBuilder.add(TANK);
+		setBuilder.add(MARKSMAN);
+		setBuilder.add(SWORDSMAN);
+		setBuilder.add(TANK);
 		ALLOWED_PROFESSION_NAMES = Collections.unmodifiableSet(setBuilder);
 		ALLOWED_PROFESSION_NAMES_INDEXABLE = Collections.unmodifiableList(new ArrayList<String>(ALLOWED_PROFESSION_NAMES));
 		
 		final Map<String, BiFunction<String, String, BasePlayer>> mapBuilder = new HashMap<>();
-		mapBuilder.put("MAGE", Mage::new);
-		mapBuilder.put("MARKSMAN", Marksman::new);
-		mapBuilder.put("SWORDSMAN", Swordsman::new);
-		mapBuilder.put("TANK", Tank::new);
+		mapBuilder.put(MAGE, Mage::new);
+		mapBuilder.put(MARKSMAN, Marksman::new);
+		mapBuilder.put(SWORDSMAN, Swordsman::new);
+		mapBuilder.put(TANK, Tank::new);
 		PROFESSION_NAME_TO_CONSTRUCTOR = Collections.unmodifiableMap(mapBuilder);
 	}
 	
