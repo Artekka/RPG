@@ -53,7 +53,7 @@ public class Game {
 					JOptionPane.QUESTION_MESSAGE, null,
 					Professions.ALLOWED_PROFESSION_NAMES.toArray(), "select a class").toString();
 		if (!Professions.isValidProfession(profession)) {
-			throw new IllegalStateException("This should never happen.");
+			throw new IllegalStateException("Invalid profession entered. This should never happen.");
 		}
 		
 		final String playerName = JOptionPane.showInputDialog(null, "Enter the name of your " + profession);
