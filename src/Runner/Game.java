@@ -3,29 +3,15 @@ package Runner;
  * This class contains the main
  */
 
-import java.util.function.*;
 import javax.swing.JOptionPane;
 
 import Professions.BasePlayer;
-import Professions.Mage;
-import Professions.Marksman;
 import Professions.Professions;
-import Professions.Swordsman;
-import Professions.Tank;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 
 public class Game {
-	private static final int NUM_ROUNDS = 100;
 	public static final String DEFAULT_ENEMY_NAME = "Enemy";
 	public static final String DEFAULT_ENEMY_WEAPON_NAME = "Sparkle Glitter";
 	private final Random rng;
@@ -84,5 +70,4 @@ public class Game {
 		System.out.println("The winner is " + winner.getName() + "!");
 	}
 }
-
 
